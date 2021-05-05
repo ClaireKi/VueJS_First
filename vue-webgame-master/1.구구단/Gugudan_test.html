@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>{{first}} 곱하기 {{second}}는? </div> <!--{{데이터명}} -> 렌더링 가능-->
+        <form v-on:submit="onSubmitForm">
+            <input type="number" ref="answer" v-model="value"> <!--v-model="value" : input값과 script의 data 중 하나인 value를 연결해줌-->
+            <button type="submit">입력!</button>
+        </form>
+        <div id = "result">{{result}}</div>
+    </div>
+    <script>
+        const app = new Vue({
+            el : '#root',
+            data : {
+                first: Math.ceil(Math.random()*9), // 1~9까지 랜덤하게 나옴
+                second: Math.ceil(Math.random()*9),
+                value: '',
+                result: '',
+            },
+            methods : {
+                onSubmitForm(e){
+                    e.preventDefault(); // 페이지 새로고침 막아줌
+                    console.log(this.first, this.second, this.value);
+                    if (this.first * this.second === parseInt(this.value)){
+                        this.result = '정답';
+                        this.first = Math.ceil(Math.random()*9),
+                        this.second = Math.ceil(Math.random()*9),
+                        this.$refs.answer.focus(); // ref에 접근하는 법 = $refs -> ref는 화면만 
+                    } else{
+                        this.result = '땡';
+                        this.value= '';
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+    methods 안에서는 data에 접근하려면 this.first(데이터명) (=data.first)로 
+    html 태그 안에서는 v-if="first(데이터명)" 이런 식으로
+    값을 렌더링 해주고 싶을 때는 {{first(데이터명)}}
+-->

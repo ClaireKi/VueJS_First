@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>끝말잇기</title>
+</head>
+<body>
+    <div id="root">
+        <word-relay start-word="제로초"></word-relay> <!--컴포넌트 예시 html 어트리뷰트는 대소문자 구분이 없어서 케밥케이스 사용해야함 -->
+        <word-relay start-word="초밥"></word-relay>
+        <word-relay start-word="딩동댕"></word-relay>
+    </div>
+<script>            //wordRelay = 전역컴포넌트
+    Vue.component('wordRelay', {    // 컴포넌트는 중복을 간결하게 시키면서도 데이터는 독립적 구성
+                                    // 컴포넌트는 뷰 인스턴스보다는 위에, 스크립트는 div#root보다는 아래에
+        template:`
+            <div>
+                <div>{{word}}</div>
+                <form v-on:submit="onSubmitForm">
+                    <input type="text" ref=answer v-model="value"> 
+                    <button type="submit">입력!</button>
+                </form>
+                <div id = "result">{{result}}</div>
+            </div>
+        `, // template은 하나의 큰 틀로 엮어줘야 함
+        props: ['startWord'], // startWord를 props로 받겠다 -> html에서는 케밥케이스로 해줬지만 스크립트에선 상관x
+        data(){
+            console.log(this);
+            return{
+                word : this.startWord,
+                value : '',
+                result: '',
+            };
+        },
+        methods : {
+            onSubmitForm(e){
+                e.preventDefault();
+                if(this.word[this.word.length-1] === this.value[0]){
+                    this.result = '정답';
+                    this.word = this.value;
+                    this.value = '';
+                    this.$refs.answer.focus();
+                }else{
+                    this.result = '땡';
+                    this.value = '';
+                    this.$refs.answer.focus();
+                }
+            }
+        },
+    })
+</script>
+<script> // 뷰 인스턴스
+    const app = new Vue({
+        el : '#root',
+    });
+</script>
+</body>
+</html>

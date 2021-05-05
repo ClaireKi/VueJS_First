@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>좋아요</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="liked">좋아요 눌렀음</div>   <!--v-if, v-else-if, v-else 는 liked 에 달려있음 -> 이들은 인접해있어야 함--> 
+        <button v-else v-on:click="onClickButton()">Like</button> <!--v-on:click : 클릭되었을 때 onClickButton 함수 실행--> 
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root', // vue의 통제범위 = id가 root인 것
+        data : {
+            liked: false,
+        },
+        methods: {
+            onClickButton(){
+                this.liked = true; // this.liked =  data.liked
+            },
+        }
+    });
+</script>
+</html>
