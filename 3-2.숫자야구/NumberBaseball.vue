@@ -6,7 +6,6 @@
             <input type="text" ref="answer" maxlength="4" v-model="value" />
             <button type="submit">입력!</button>
         </form>
-        <div>시도: {{try}}</div>
     </div>
 </template>
 <script>

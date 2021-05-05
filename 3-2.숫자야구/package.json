@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { 
+  "scripts": {
     "build": "webpack"
   },
   "author": "",
@@ -12,6 +12,7 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
+    "vue-loader": "^15.9.6", 
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0"
   }

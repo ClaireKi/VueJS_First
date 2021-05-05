@@ -1,5 +1,6 @@
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path'); // path.join import하려고 씀
-                              // 절대경로로 쓰려고
+                             // 절대경로로 쓰려고
 
 Module.exports = {
     entry: {
@@ -7,7 +8,10 @@ Module.exports = {
 
     },
     module: {   // webpack의 핵심부분
-
+        rules: [{
+            test: /\.vue$/, //파일명이 .vue로 끝나는 파일은
+            loader: 'vue-loader', // vue-loader가 처리한다
+        }],
     },
     plugins: [
 
