@@ -32,6 +32,7 @@ module.exports = {
     output: {
         filename: '[name].js', // app이 알아서 [name] 에 들어감
         path: path.join(__dirname,'dist'), // path : 폴더 경로 -> dist라는 폴더 안에 app.js가 생김
+        publicPath: '/dist', // npm run dev 하기 위해서 추가
     },
 }; 
 //webpack 왜 씀? : 스크립트 같은게 너무 많아져서 하나로 합쳐버리려고
